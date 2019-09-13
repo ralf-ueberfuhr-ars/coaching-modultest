@@ -1,15 +1,17 @@
 package de.ars.schulung.tests.garage;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * An engine.
  */
 public class Engine {
 
-	private static final Logger logger = Logger.getLogger(Engine.class
-			.getName());
+	// not static, not final, not private -> testability
+	Logger logger = LogManager.getLogger(Engine.class);
 
 	private final double hp;
 	private final Thread engineThread;
@@ -24,8 +26,7 @@ public class Engine {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
-						logger.log(
-								Level.WARNING,
+						logger.warn(
 								this
 										+ " is not working correctly at the moment! Stop the engine when this problem occurs again.");
 					}
@@ -52,8 +53,9 @@ public class Engine {
 	 * Starts the engine.
 	 */
 	public void start() {
-		engineThread.start();
 		engineStarted = true;
+		engineThread.start();
+		logger.info("Engine started.");
 	}
 
 	/**

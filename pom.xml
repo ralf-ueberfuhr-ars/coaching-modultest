@@ -16,9 +16,21 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<mockito.version>3.0.0</mockito.version>
 		<jupiter.version>5.5.1</jupiter.version>
+		<log4j.version>2.12.1</log4j.version>
 	</properties>
 
 	<dependencies>
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
 		<!-- Test Libraries -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
