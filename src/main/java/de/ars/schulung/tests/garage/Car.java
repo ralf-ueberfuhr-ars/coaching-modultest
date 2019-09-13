@@ -1,6 +1,5 @@
 package de.ars.schulung.tests.garage;
 
-import de.ars.schulung.tests.garage.errorhandling.ErrorHandler;
 import de.ars.schulung.tests.garage.exception.ShiftNotPossibleException;
 
 /**
@@ -94,18 +93,19 @@ public class Car {
 			throw new IllegalStateException("Die Kupplung ist nich gedrückt!");
 		}
 
-		try {
+// TODO bad for test!!!
+//		try {
 			geartransmission.shiftUp();
-		} catch (ShiftNotPossibleException e) {
-			ErrorHandler.handleError(e);
-		}
+//		} catch (ShiftNotPossibleException e) {
+//			 ErrorHandler.handleError(e);
+//		}
 	}
 
 	/**
 	 * Drives the car.
 	 */
 	public void drive() {
-		if (gastank.isEmpty() && !engine.isEngineStarted()) {
+		if (!gastank.isEmpty() && !engine.isEngineStarted()) {
 			engine.start();
 		}
 	}
