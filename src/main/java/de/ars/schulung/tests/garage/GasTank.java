@@ -36,7 +36,7 @@ public class GasTank {
 	}
 
 	public boolean isAmountPossible(double amountOfFuel) {
-		return amountOfFuel + fuel < getCapacity();
+		return amountOfFuel + fuel <= getCapacity();
 	}
 
 	public boolean isEmpty() {
