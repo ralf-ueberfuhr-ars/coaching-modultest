@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
@@ -74,6 +76,17 @@ public class GearTransmissionTest {
 		assertThrows(ShiftNotPossibleException.class, transmission::shiftUp);
 		// again, to test that the exception is thrown repeatedly
 		assertThrows(ShiftNotPossibleException.class, transmission::shiftUp);
+	}
+	
+	@ParameterizedTest(name = "Shifting up with maximum gears of {0}")
+	@ValueSource(ints = {1,3,4,5,6,7,100})
+	void testShiftingParameterized(int maxGears) throws ShiftNotPossibleException {
+		GearTransmission gt = new GearTransmission(maxGears);
+		for (int i = 0; i < maxGears; i++) {
+			gt.shiftUp();
+			assertThat(gt.getCurrentGear(), is(equalTo(i + 1)));
+		}
+		assertThrows(ShiftNotPossibleException.class, gt::shiftUp);
 	}
 
 }
