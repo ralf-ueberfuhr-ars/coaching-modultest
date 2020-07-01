@@ -90,10 +90,10 @@ public class Car {
 	 *             if the car is already in the maximum gear
 	 */
 	public void shiftUp() throws IllegalStateException, ShiftNotPossibleException {
+
 		if (!clutch.isPressed()) {
 			throw new IllegalStateException("Die Kupplung ist nich gedrückt!");
 		}
-
 		try {
 			geartransmission.shiftUp();
 		} catch (ShiftNotPossibleException e) {
